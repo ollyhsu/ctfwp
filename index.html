@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>CTF解题本</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app">
+    <a href="https://www.vicosna.com">
+        <img src="https://cdn.jsdelivr.net/gh/vicosna/PicBed@master/image/logo/logo.jpg" width=128 style="border-radius: 50%">
+    </a>
+    <p>正在努力加载中...</p>
+  </div>
+  <script>
+    window.$docsify = {
+      name: "<p>CTF解题本</p>",
+      repo: 'vicosna/ctfwp',
+      el: '#app',
+      maxLevel: 2,
+      loadNavbar: 'nav.md',
+      loadSidebar: "sidebar.md",
+      subMaxLevel: 2,
+      auto2top: true,
+      coverpage: 'cover.md',
+      mergeNavbar: true,
+      themeColor: '#8F5EF8',//'#956FE7',
+      search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: 'auto',
+        placeholder: '输入关键字，快速寻找WP🔍',
+        noData: '找不到结果!😞',
+        // Headline depth, 1 - 6
+        depth: 6,
+        hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+        // To avoid search index collision
+        // between multiple websites under the same domain
+        // namespace: 'website-1',
+      },
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      count:{
+        countable:true,
+        fontsize:'0.9em',
+        color:'rgb(90,90,90)',
+        language:'chinese'
+      },
+      tabs: {
+        persist    : true,      // default
+        sync       : true,      // default
+        theme      : 'classic', // default
+        tabComments: true,      // default
+        tabHeadings: true       // default
+      },
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      plugins: [
+          function (hook, vm) {
+            hook.beforeEach(function (html) {
+                if (/githubusercontent\.com/.test(vm.route.file)) {
+                    url = vm.route.file
+                    .replace('raw.githubusercontent.com', 'github.com')
+                    .replace(/\/master/, '/blob/master')
+                } else {
+                    url = 'https://wp.vicosna.com/' + vm.route.file
+                }
+                var editHtml = ''
+                    +'欢迎各位师傅前来交流解题思路😀&ensp;'
+                    +'如有文章中存在错误🐣&ensp;请告知我进行改正！📧&ensp;:[vicosna@qq.com](http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=vicosna@qq.com)'
+                    +'\n\n----\n'
+                return editHtml + html;
+            });
+            // add copyright
+            hook.beforeEach(function(content) {
+                var copyRight = '\n\n----\n'+'文章作者: [Vicosna](mailto:332910123@qq.com) \n\n'+'文章链接: '+url+'\n\n'
+                    +'版权声明: 本博客所有文章除特别声明外，均采用'+
+                    '[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)许可协议。\n\n'
+                    +'转载请注明来自[Vicosna](https://wp.vicosna.com)！\n'
+                return content + copyRight;
+            });
+          },
+        ]
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- plugins -->
+
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/external-script.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
+
+  <!-- highlight -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-nasm.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-markdown.min.js"></script>
+
+  <!-- mouse click -->
+  <script src="//cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script>
+</body>
+</html>
